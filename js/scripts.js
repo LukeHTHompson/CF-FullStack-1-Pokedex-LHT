@@ -68,7 +68,7 @@ let Victreebel = {
 pokemonRepository.add(Bellsprout);
 pokemonRepository.add(Weepinbell);
 pokemonRepository.add(Victreebel);
-console.log(pokemonRepository.getAll());
+// console.log(pokemonRepository.getAll());
 
 // Functions to print pokemon info
 function printNumberSpace(pokemon) {
