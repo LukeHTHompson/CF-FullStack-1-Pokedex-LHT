@@ -1,11 +1,22 @@
+//Example Pokemon Object for validation purposes
+let aaa = {
+  number: 0,
+  name: "example",
+  height: -999,
+  types: ["just", "an", "example"]
+};
+
 // Setup an IIFE to contain and protect pokemonList
 let pokemonRepository = (function () {
   // Create an empty array to populate in returns
   let pokemonList = [];
 
-  //pokemonRepository.add(objectName) will add the object to pokemonList
+  // pokemonRepository.add(objectName) will add the object to pokemonList
+  // input must be an object with set keys to be added.
   function add(pokemonObject) {
-    pokemonList.push(pokemonObject);
+    if ( (typeof (pokemonObject) === "object") && (Object.keys(pokemonObject) === ["number","name","height","types"]) ){
+      pokemonList.push(pokemonObject);
+    }
   }
 
   //pokemonRepository.getAll() will return contents of pokemonList
@@ -40,6 +51,16 @@ let Victreebel = {
   height: 1.7,
   types: ["Grass", "Poison"]
 };
+
+console.log(Object.keys(Bellsprout));
+console.log(typeof (Bellsprout) === "object")
+console.log(Object.keys(Bellsprout) === Object.keys(Bellsprout))
+console.log(Object.keys(Weepinbell));
+console.log(typeof (Weepinbell) === "object")
+console.log(Object.keys(Weepinbell) === ['0','1','2','3'])
+console.log(Object.keys(Victreebel));
+console.log(typeof (Victreebel) === "object")
+console.log(Object.keys(Victreebel) === ["number", "name", "height", "types"])
 
 // Populate some data in pokemonList via pokemonRepository.add(object)
 pokemonRepository.add(Bellsprout);
@@ -79,55 +100,5 @@ function printPokemon() {
   });
 }
 
+// Print all Pokemon data.
 printPokemon();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// [
-//   { name: "Bellsprout",
-//     height: 0.7,
-//     types: ["Grass", "Poison"]},
-//
-//   { name: "Weepinbell",
-//     height: 1,
-//     types: ["Grass", "Posion"]},
-//
-//   { name: "Victreebel",
-//     height: 1.7,
-//     types: ["Grass", "Poison"]},
-// ];
-
-// Print a list of all objects in pokemonList with their name and height.
-// Each new line is a new paragrpah in the DOM. Alternate could be line 23 <br>
-// function printPokemon1(){
-//   for (let i=0; i < pokemonList.length; i++) {
-//     document.write("<p>" + pokemonList[i].name + " (height: " + pokemonList[i].height + ")");
-//     if (pokemonList[i].height > 1) {
-//       document.write(" - That's one TALL Pokemon!");
-//     }
-//     document.write("</p>");
-//     // document.write("<br/>");
-//   }
-// }
-
-//Print Pokemon list once
-// printPokemon1();
