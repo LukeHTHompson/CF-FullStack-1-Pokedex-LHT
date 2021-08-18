@@ -8,13 +8,14 @@ let pokemonRepository = (function () {
   // pokemonObject.keys(pokemonObject) === ["number","name","height","types"] would evaluate false for some reason.
   function add(pokemonObject) {
     if ((typeof (pokemonObject) === "object")
-    && ( pokemonObject.hasOwnProperty("number")
-    && pokemonObject.hasOwnProperty("name")
-    && pokemonObject.hasOwnProperty("height")
-    && pokemonObject.hasOwnProperty("types") )
-    && (Object.keys(pokemonObject).length == 4)) {
-      pokemonList.push(pokemonObject);
-    }
+    &&
+      (pokemonObject.hasOwnProperty("number")
+      && pokemonObject.hasOwnProperty("name")
+      && pokemonObject.hasOwnProperty("height")
+      && pokemonObject.hasOwnProperty("types") )
+      && (Object.keys(pokemonObject).length == 4))
+
+    { pokemonList.push(pokemonObject); }
   }
 
   //pokemonRepository.getAll() will return contents of pokemonList
@@ -55,10 +56,15 @@ pokemonRepository.add(Bellsprout);
 pokemonRepository.add(Weepinbell);
 pokemonRepository.add(Victreebel);
 
+// Function to search for pokemon
+// function search(input) {
+//   return pokemonRepository.getAll().filter(input => pokemonRepository.getAll().name === input);
+// };
+
 // Functions to print pokemon info
 function printNumberSpace(pokemon) {
   document.write("#" + pokemon.number + " ")
-}
+};
 
 function printNameSpace(pokemon) {
   document.write(pokemon.name + " ")
@@ -89,3 +95,5 @@ function printPokemon() {
 
 // Print all Pokemon data.
 printPokemon();
+// console.log(pokemonRepository.getAll())
+// console.log(search("Victreebel"))
