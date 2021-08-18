@@ -7,7 +7,7 @@ let pokemonRepository = (function () {
   // input must be an object with set keys to be added. Hoping for better way to validate keys.
   // pokemonObject.keys(pokemonObject) === ["number","name","height","types"] would evaluate false for some reason.
   function add(pokemonObject) {
-    if (typeof (pokemonObject) === "object") {
+    if ((typeof (pokemonObject) === "object")
     && ( pokemonObject.hasOwnProperty("number")
     && pokemonObject.hasOwnProperty("name")
     && pokemonObject.hasOwnProperty("height")
