@@ -14,7 +14,8 @@ let pokemonRepository = (function () {
   // pokemonRepository.add(objectName) will add the object to pokemonList
   // input must be an object with set keys to be added.
   function add(pokemonObject) {
-    if ( (typeof (pokemonObject) === "object") && (Object.keys(pokemonObject) === ["number","name","height","types"]) ){
+    if (typeof (pokemonObject) === "object") {
+     // && (Object.keys(pokemonObject) === ["number","name","height","types"]) ){
       pokemonList.push(pokemonObject);
     }
   }
@@ -52,15 +53,16 @@ let Victreebel = {
   types: ["Grass", "Poison"]
 };
 
-console.log(Object.keys(Bellsprout));
-console.log(typeof (Bellsprout) === "object")
-console.log(Object.keys(Bellsprout) === Object.keys(Bellsprout))
-console.log(Object.keys(Weepinbell));
-console.log(typeof (Weepinbell) === "object")
-console.log(Object.keys(Weepinbell) === ['0','1','2','3'])
-console.log(Object.keys(Victreebel));
-console.log(typeof (Victreebel) === "object")
-console.log(Object.keys(Victreebel) === ["number", "name", "height", "types"])
+//Testing Content
+// console.log(Object.keys(Bellsprout));
+// console.log(typeof (Bellsprout) === "object")
+// console.log(Object.keys(Bellsprout) === Object.keys(Bellsprout))
+// console.log(Object.keys(Weepinbell));
+// console.log(typeof (Weepinbell) === "object")
+// console.log(Object.keys(Weepinbell) === ['0','1','2','3'])
+// console.log(Object.keys(Victreebel));
+// console.log(typeof (Victreebel) === "object")
+// console.log(Object.keys(Victreebel) === ["number", "name", "height", "types"])
 
 // Populate some data in pokemonList via pokemonRepository.add(object)
 pokemonRepository.add(Bellsprout);
