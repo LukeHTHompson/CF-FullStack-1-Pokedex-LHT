@@ -1,21 +1,18 @@
-//Example Pokemon Object for validation purposes
-let aaa = {
-  number: 0,
-  name: "example",
-  height: -999,
-  types: ["just", "an", "example"]
-};
-
 // Setup an IIFE to contain and protect pokemonList
 let pokemonRepository = (function () {
   // Create an empty array to populate in returns
   let pokemonList = [];
 
-  // pokemonRepository.add(objectName) will add the object to pokemonList
-  // input must be an object with set keys to be added.
+  // pokemonRepository.add(objectName) will add the object to pokemonList.
+  // input must be an object with set keys to be added. Hoping for better way to validate keys.
+  // pokemonObject.keys(pokemonObject) === ["number","name","height","types"] would evaluate false for some reason.
   function add(pokemonObject) {
     if (typeof (pokemonObject) === "object") {
-     // && (Object.keys(pokemonObject) === ["number","name","height","types"]) ){
+    && ( pokemonObject.hasOwnProperty("number")
+    && pokemonObject.hasOwnProperty("name")
+    && pokemonObject.hasOwnProperty("height")
+    && pokemonObject.hasOwnProperty("types") )
+    && (Object.keys(pokemonObject).length == 4)) {
       pokemonList.push(pokemonObject);
     }
   }
@@ -53,22 +50,10 @@ let Victreebel = {
   types: ["Grass", "Poison"]
 };
 
-//Testing Content
-// console.log(Object.keys(Bellsprout));
-// console.log(typeof (Bellsprout) === "object")
-// console.log(Object.keys(Bellsprout) === Object.keys(Bellsprout))
-// console.log(Object.keys(Weepinbell));
-// console.log(typeof (Weepinbell) === "object")
-// console.log(Object.keys(Weepinbell) === ['0','1','2','3'])
-// console.log(Object.keys(Victreebel));
-// console.log(typeof (Victreebel) === "object")
-// console.log(Object.keys(Victreebel) === ["number", "name", "height", "types"])
-
 // Populate some data in pokemonList via pokemonRepository.add(object)
 pokemonRepository.add(Bellsprout);
 pokemonRepository.add(Weepinbell);
 pokemonRepository.add(Victreebel);
-// console.log(pokemonRepository.getAll());
 
 // Functions to print pokemon info
 function printNumberSpace(pokemon) {
