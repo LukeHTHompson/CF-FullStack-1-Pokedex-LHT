@@ -27,12 +27,12 @@ ul{
 
 /* Show the most recently clicked (i.e. active) pokemon button via green border */
 .pokemon-buttons:focus {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   background-color: green;
   color: white;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 560px) {
   .pokemon-buttons{
     width: 100%;
   }
