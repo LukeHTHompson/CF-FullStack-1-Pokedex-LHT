@@ -4,18 +4,14 @@ let pokemonRepository = (function () {
   let pokemonList = [];
 
   // pokemonRepository.add(objectName) will add the object to pokemonList.
-  // input must be an object with set keys to be added. Hoping for better way to validate keys.
-  // pokemonObject.keys(pokemonObject) === ["number","name","height","types"] would evaluate false for some reason.
-  function add(pokemonObject) {
-    if ((typeof (pokemonObject) === "object")
-    &&
-      (pokemonObject.hasOwnProperty("number")
-      && pokemonObject.hasOwnProperty("name")
-      && pokemonObject.hasOwnProperty("height")
-      && pokemonObject.hasOwnProperty("types") )
-      && (Object.keys(pokemonObject).length == 4))
-
-    { pokemonList.push(pokemonObject); }
+  // must be validated as an object with proper keys first.
+  function add (pokemonObject) {
+    if (
+      (typeof (pokemonObject) === "object") &&
+      Object.keys(pokemonObject).every((arrayItem) =>
+      ["number", "name", "height", "types"].includes(arrayItem)
+    )
+  ) { pokemonList.push(pokemonObject); }
   }
 
   //pokemonRepository.getAll() will return contents of pokemonList
@@ -27,7 +23,7 @@ let pokemonRepository = (function () {
     add: add,
     getAll: getAll
   };
-})();
+}) ();
 
 //Setup Pokemon Objects for with pokemonRepository.add(object)
 let Bellsprout = {
