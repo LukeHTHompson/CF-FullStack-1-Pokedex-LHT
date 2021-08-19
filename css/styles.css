@@ -1,1 +1,37 @@
 /* Styles */
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul{
+  padding: 0px;
+}
+
+.pokemon-buttons{
+  border: 2px solid red;
+  display: block;
+  width: 50%;
+  margin: 2px auto;
+  font-size: 26px;
+}
+
+/* Show which option is currently being hovered via yellow border */
+.pokemon-buttons:hover {
+  border: 2px solid yellow;
+}
+
+/* Show the most recently clicked (i.e. active) pokemon button via green border */
+.pokemon-buttons:focus {
+  border: 2px solid green;
+}
+
+@media all and (max-width: 500px) {
+  .pokemon-buttons{
+    width: 100%;
+  }
+}
