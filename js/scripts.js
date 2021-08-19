@@ -61,6 +61,16 @@ pokemonRepository.add(Victreebel);
 //   return pokemonRepository.getAll().filter(input => pokemonRepository.getAll().name === input);
 // };
 
+// Function to Search for Pokemon
+function search(searchString) {
+  return pokemonRepository.getAll().filter(
+    // Using the next pokemon in the list, return the name, make it toLowerCase
+    // then check if the searchString in lowercase is a part of the pokemon name we are on
+    // perform this for all pokemon in the list to find all that match.
+    (nextPokemonInList) => nextPokemonInList.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1
+  );
+}
+
 // Functions to print pokemon info
 function printNumberSpace(pokemon) {
   document.write("#" + pokemon.number + " ")
