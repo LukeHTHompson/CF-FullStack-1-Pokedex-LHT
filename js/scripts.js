@@ -15,13 +15,22 @@ let pokemonRepository = (function () {
   }
 
   //pokemonRepository.getAll() will return contents of pokemonList
-  function getAll() {
+  function getAll () {
     return pokemonList;
+  }
+
+  function addListItem (pokemon) {
+    let list = document.querySelector("ul");
+    let button = document.createElement('button');
+    button.innerText = "#" + pokemon.number + " - " + pokemon.name;
+    button.classList.add("pokemon-buttons")
+    list.appendChild(button);
   }
 
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    addListItem: addListItem
   };
 }) ();
 
@@ -67,39 +76,46 @@ function search(searchString) {
   );
 }
 
+// Replaced by element creation loop to supply pokemon to webpage: createPokemon
+
 // Functions to print pokemon info
-function printNumberSpace(pokemon) {
-  document.write("#" + pokemon.number + " ")
-};
+// function printNumberSpace(pokemon) {
+//   document.write("#" + pokemon.number + " ")
+// };
+//
+// function printNameSpace(pokemon) {
+//   document.write(pokemon.name + " ")
+// };
+//
+// function printHeight(pokemon) {
+//   document.write("height: " + pokemon.height)
+// };
+//
+// // Check height of pokemon based on threshold 1
+// // Append extra comment for pokemon taller than 1
+// function checkHeight(pokemon) {
+//   if (pokemon.height > 1) {
+//     document.write(" - That's one TALL Pokemon!")
+//   }
+// };
+//
+// function printPokemon() {
+//   pokemonRepository.getAll().forEach(function(pokemon) {
+//     document.write("<p>")
+//     printNumberSpace(pokemon);
+//     printNameSpace(pokemon);
+//     printHeight(pokemon);
+//     checkHeight(pokemon);
+//     document.write("</p>")
+//   });
+// }
 
-function printNameSpace(pokemon) {
-  document.write(pokemon.name + " ")
-};
-
-function printHeight(pokemon) {
-  document.write("height: " + pokemon.height)
-};
-
-// Check height of pokemon based on threshold 1
-// Append extra comment for pokemon taller than 1
-function checkHeight(pokemon) {
-  if (pokemon.height > 1) {
-    document.write(" - That's one TALL Pokemon!")
-  }
-};
-
-function printPokemon() {
+function createPokemon() {
   pokemonRepository.getAll().forEach(function(pokemon) {
-    document.write("<p>")
-    printNumberSpace(pokemon);
-    printNameSpace(pokemon);
-    printHeight(pokemon);
-    checkHeight(pokemon);
-    document.write("</p>")
-  });
+    pokemonRepository.addListItem(pokemon)
+  })
 }
 
 // Print all Pokemon data.
-printPokemon();
-// console.log(pokemonRepository.getAll())
-// console.log(search("Victreebel"))
+// printPokemon();
+createPokemon();
