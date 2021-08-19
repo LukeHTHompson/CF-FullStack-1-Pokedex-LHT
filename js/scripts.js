@@ -23,10 +23,6 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-  function showDetailsHolder (pokemon) {
-    return showDetails (pokemon);
-  }
-
   // Log to the console the pokemon's # and name when clicked
   // since # and name are the contents of the buttons, and our
   // event listener is set up on those buttons, use event.target
@@ -44,6 +40,8 @@ let pokemonRepository = (function () {
   // Add listener to new pokemon buttons after adding them.
   function newButtonListener (button, pokemon) {
     // Log the pokemon's # and name to console when clicked
+    // Use an unnamed function that calls into showDetails with the pokemon
+    // whose button we are currently clicking
     button.addEventListener("click", function() { showDetails(pokemon) } );
   }
 
