@@ -19,12 +19,31 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  // Log to the console the pokemon's # and name when clicked
+  // since # and name are the contents of the buttons, and our
+  // event listener is set up on those buttons, use event.target
+  // to find which button was pressed, then print its contents
+  function showDetails (event) {
+    let details = event.target.innerText;
+    console.log(details);
+  }
+
+  // Add listener to new pokemon buttons after adding them.
+  function newButtonListener (button) {
+    // Log the pokemon's # and name to console when clicked
+    button.addEventListener("click", showDetails);
+  }
+
+  // Add a button to the end of the UI for each pokemon in the repository
+  // also sets an event listener on the buttons to print pokemon data
+  // to the log when a pokemon is clicked.
   function addListItem (pokemon) {
     let list = document.querySelector("ul");
     let button = document.createElement('button');
     button.innerText = "#" + pokemon.number + " - " + pokemon.name;
     button.classList.add("pokemon-buttons")
     list.appendChild(button);
+    newButtonListener(button);
   }
 
   return {
@@ -110,7 +129,7 @@ function search(searchString) {
 //   });
 // }
 
-function createPokemon() {
+function createPokemon () {
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon)
   })
