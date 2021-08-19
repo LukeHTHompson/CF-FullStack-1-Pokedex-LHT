@@ -29,9 +29,7 @@ let pokemonRepository = (function () {
   // to find which button was pressed, then print its contents
   function showDetails (pokemon) {
     // let pokemonLogData = event.target.innerText + ":";
-    let pokemonDetails = pokemon.detailsUrl;
-    // console.log(pokemon);
-    loadDetails(pokemon/*Details)*/).then(function () {
+    loadDetails(pokemon).then(function () {
       // console.log(pokemonLogData);
       console.log(pokemon);
     });
