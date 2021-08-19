@@ -28,11 +28,11 @@ let pokemonRepository = (function () {
   // event listener is set up on those buttons, use event.target
   // to find which button was pressed, then print its contents
   function showDetails (pokemon) {
-    let pokemonLogData = event.target.innerText + ":";
+    // let pokemonLogData = event.target.innerText + ":";
     let pokemonDetails = pokemon.detailsUrl;
-    console.log(pokemon);
+    // console.log(pokemon);
     loadDetails(pokemon/*Details)*/).then(function () {
-      console.log(pokemonLogData);
+      // console.log(pokemonLogData);
       console.log(pokemon);
     });
   }
