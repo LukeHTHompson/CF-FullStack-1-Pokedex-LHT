@@ -15,7 +15,7 @@ let pokemonRepository = (function () {
       //   Object.keys(pokemonObject).every((arrayItem) =>
       //   ["number", "name", "height", "types"].includes(arrayItem)
       // )
-  ) { pokemonList.push(pokemonObject) }
+    ) { pokemonList.push(pokemonObject) }
   }
 
   //pokemonRepository.getAll() will return contents of pokemonList
@@ -54,7 +54,8 @@ let pokemonRepository = (function () {
     // CSS: text-transform: capitalize; will capitalize first letter of each word
     // JS:  let nameFormat = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     button.innerText = pokemon.name;
-    button.classList.add("pokemon-buttons")
+    button.classList.add("pokemon-buttons");
+    button.id = pokemon.name;
     list.appendChild(button);
     newButtonListener(button, pokemon);
   }
@@ -84,6 +85,16 @@ let pokemonRepository = (function () {
     })
   }
 
+  function heightCheck (height) {
+    // Looked up that average pokemon heigh is about 4, so 10 really is tall!
+    if (height >= 10) {
+      return "<br/>" + "That's one TALL pokemon!"
+    }
+    else {
+      return ""
+    }
+  }
+
   // Similar logic for then chains and data acquisition as loadList above
   function loadDetails(item) {
     let url= item.detailsUrl;
@@ -96,6 +107,21 @@ let pokemonRepository = (function () {
       item.height = details.height;
       item.types = details.types;
       item.number = details.id;
+      // Setup info to be displayed in modal
+      // console.log(item.types);
+      // let typeString = item.types.valueOf()[0].name;
+      let modalTitle = item.name
+      // + " (" + typeString + ")";
+
+      let modalDetails =
+      "Height: " + item.height +
+      heightCheck(item.height) +
+      "<br/>" +
+      "<img src=" + item.imageUrl + ">";
+
+      showModal (modalTitle, modalDetails);
+      // showModal (item.name, (item.height + "<br/>" + "<img src=" + item.imageUrl + ">"));
+
       // Next we use a catch in case the json was not formatted correctly
     }).catch(function (e) {
       console.error(e);
@@ -110,6 +136,54 @@ let pokemonRepository = (function () {
       // perform this for all pokemon in the list to find all that match.
       (nextPokemonInList) => nextPokemonInList.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1
     );
+  }
+
+  // MODAL CONTENT
+  function showModal (title, text) {
+    let modalContainer = document.querySelector("#modal-container");
+    
+    // Clear last modal content
+    modalContainer.innerHTML = "";
+
+    let modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    // Add new content for modal
+    // Close button for the modal, on click runs closeModal function
+    let closeButtonElement = document.createElement("button");
+    closeButtonElement.classList.add("modal-close");
+    closeButtonElement.innerText = "Close";
+    closeButtonElement.addEventListener("click", hideModal);
+
+    // Adding a break in the DOM so that the floated close button
+    // will not interfere with the CSS centering of the title
+    let breakForCentering = document.createElement("br")
+
+    // Title for the modal
+    let titleElement = document.createElement("h1");
+    titleElement.innerText = title;
+
+    // main content for modal
+    let contentElement = document.createElement("p");
+    contentElement.innerHTML = text;
+
+    // actually attach created HTML to the DOM
+    // modal content to modal
+    // modal to its container
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(breakForCentering);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modalContainer.appendChild(modal);
+
+    // with new content now created and attached, show the modal
+    modalContainer.classList.add("is-visible");
+  }
+
+  // hideModal here
+  function hideModal() {
+    let modalContainer = document.querySelector("#modal-container");
+    modalContainer.classList.remove("is-visible");
   }
 
   return {
@@ -131,96 +205,4 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
-// Redundant because of lines 82-89
-// function createPokemon () {
-//   pokemonRepository.getAll().forEach(function(pokemon) {
-//     pokemonRepository.addListItem(pokemon)
-//   })
-// }
 console.log(pokemonRepository.getAll());
-
-// IIFE for form validation
-(function () {
-  let form = document.querySelector ("#register-form");
-  let emailInput = document.querySelector ("#email");
-  let passwordInput = document.querySelector ("#password");
-
-  function validateForm () {
-    let isValidEmail = validateEmail ();
-    let isValidPassword = validatePassword ();
-    return isValidEmail && isValidPassword;
-  }
-
-  function validateEmail () {
-    let value = emailInput.value;
-
-    // Need to show error if the e-mail field is left blank.
-    if (!value) {
-      showErrorMessage (emailInput, "E-mail is a required field.");
-      // return false here is preventing us from continuing in this Function
-      // to the end where we would clear out the error from display
-      return false;
-    }
-
-    // Need to show error if the e-mail does not have "@" in it.
-    if (value.indexOf("@") === -1) {
-      showErrorMessage (emailInput, "You must enter a valid e-mail address.");
-      return false;
-    }
-
-    // We call the error message function when all is good to clear out any
-    // existing error messages that may have popped up to this point.
-    showErrorMessage(emailInput, null);
-    return true;
-  }
-
-  function validatePassword () {
-    let value = passwordInput.value;
-
-    // Need to show error if the password field is left blank.
-    if (!value) {
-      showErrorMessage (passwordInput, "Password is a required field.");
-      return false;
-    }
-
-    // Need to show error if the password is not at least 8 char long
-    if (value.length < 8) {
-      showErrorMessage (passwordInput, "The password needs to be at least 8 characters long");
-      return false;
-    }
-
-    // We call the error message function when all is good to clear out any
-    // existing error messages that may have popped up to this point.
-    showErrorMessage (passwordInput, null);
-    return true;
-  }
-
-  function showErrorMessage (input, message) {
-    let container = input.parentElement;
-
-    // Clear existing error
-    let error = container.querySelector(".error-message");
-    if (error) {
-      container.removeChild(error);
-    }
-
-    // Add error if message isn't empty
-    if (message) {
-      let error = document.createElement("div");
-      error.classList.add("error-message");
-      error.innerText = message;
-      container.appendChild(error);
-    }
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Do not submit to the server
-    if (validateForm()) {
-      alert('Success!');
-    }
-  });
-
-  emailInput.addEventListener('input', validateEmail);
-  passwordInput.addEventListener('input', validatePassword);
-
-})();

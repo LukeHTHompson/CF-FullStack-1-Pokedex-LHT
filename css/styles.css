@@ -5,6 +5,11 @@
 }
 
 #modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  display: block;
   position: fixed;
   padding: 20px;
   top: 0;
@@ -39,6 +44,7 @@
 }
 
 .modal-close {
+  display: block;
   float: right;
   -webkit-appearance: none;
   border: 0;
@@ -47,37 +53,48 @@
   text-decoration: underline;
 }
 
+.modal-close:hover,
+.modal-close:focus {
+  color: #800080;
+}
+
 /* overwrite margins from .modal for the header to be flush with top of modal */
 .modal h1 {
   margin-top: 0;
+  text-transform: capitalize;
 }
 
 /* overwrite margins from .modal for the content to be flush with bottom of modal */
 .modal p {
   margin-bottom: 0;
+  text-align: center;
 }
 
-form {
+/* form {
   text-align: center;
 }
 
 .error-message {
   color: red;
   font-size: 12px;
-}
+} */
 
 h1 {
   text-align: center;
 }
 
-ul{
-  padding: 0px;
+ul {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  border: 2px solid black;
+  padding: 2px;
 }
 
 .pokemon-buttons{
   border: 2px solid red;
   display: block;
-  width: 50%;
+  width: 100%;
   margin: 2px auto;
   font-size: 26px;
   text-transform: capitalize;
@@ -97,13 +114,15 @@ ul{
 }
 
 @media all and (max-width: 560px) {
-  .pokemon-buttons{
+  .pokemon-buttons,
+  ul {
     width: 100%;
   }
 }
 
 @media all and (max-width: 250px) {
-  .pokemon-buttons{
+  .pokemon-buttons,
+  ul {
     width: 100%;
   }
   input {
