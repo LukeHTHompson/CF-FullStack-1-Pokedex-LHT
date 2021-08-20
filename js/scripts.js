@@ -50,8 +50,10 @@ let pokemonRepository = (function () {
     let list = document.querySelector("ul");
     let button = document.createElement('button');
     // Format the pokemon names from the JSON to capitalize first letter
-    let nameFormat = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
-    button.innerText = nameFormat;
+    // Commented out as example of how to do this JS, but can also be done in CSS:
+    // CSS: text-transform: capitalize; will capitalize first letter of each word
+    // JS:  let nameFormat = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+    button.innerText = pokemon.name;
     button.classList.add("pokemon-buttons")
     list.appendChild(button);
     newButtonListener(button, pokemon);
