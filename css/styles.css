@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+form {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
 h1 {
   text-align: center;
 }
@@ -36,6 +45,16 @@ ul{
 
 @media all and (max-width: 560px) {
   .pokemon-buttons{
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 250px) {
+  .pokemon-buttons{
+    width: 100%;
+  }
+  input {
+    display: block;
     width: 100%;
   }
 }
