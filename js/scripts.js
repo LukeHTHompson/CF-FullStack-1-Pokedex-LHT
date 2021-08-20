@@ -31,7 +31,7 @@ let pokemonRepository = (function () {
     // let pokemonLogData = event.target.innerText + ":";
     loadDetails(pokemon).then(function () {
       // console.log(pokemonLogData);
-      console.log(pokemon);
+      // console.log(pokemon);
     });
   }
 
