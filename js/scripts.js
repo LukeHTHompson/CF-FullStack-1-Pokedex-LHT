@@ -137,4 +137,90 @@ pokemonRepository.loadList().then(function () {
 //     pokemonRepository.addListItem(pokemon)
 //   })
 // }
-console.log(pokemonRepository.getAll())
+console.log(pokemonRepository.getAll());
+
+// IIFE for form validation
+(function () {
+  let form = document.querySelector ("#register-form");
+  let emailInput = document.querySelector ("#email");
+  let passwordInput = document.querySelector ("#password");
+
+  function validateForm () {
+    let isValidEmail = validateEmail ();
+    let isValidPassword = validatePassword ();
+    return isValidEmail && isValidPassword;
+  }
+
+  function validateEmail () {
+    let value = emailInput.value;
+
+    // Need to show error if the e-mail field is left blank.
+    if (!value) {
+      showErrorMessage (emailInput, "E-mail is a required field.");
+      // return false here is preventing us from continuing in this Function
+      // to the end where we would clear out the error from display
+      return false;
+    }
+
+    // Need to show error if the e-mail does not have "@" in it.
+    if (value.indexOf("@") === -1) {
+      showErrorMessage (emailInput, "You must enter a valid e-mail address.");
+      return false;
+    }
+
+    // We call the error message function when all is good to clear out any
+    // existing error messages that may have popped up to this point.
+    showErrorMessage(emailInput, null);
+    return true;
+  }
+
+  function validatePassword () {
+    let value = passwordInput.value;
+
+    // Need to show error if the password field is left blank.
+    if (!value) {
+      showErrorMessage (passwordInput, "Password is a required field.");
+      return false;
+    }
+
+    // Need to show error if the password is not at least 8 char long
+    if (value.length < 8) {
+      showErrorMessage (passwordInput, "The password needs to be at least 8 characters long");
+      return false;
+    }
+
+    // We call the error message function when all is good to clear out any
+    // existing error messages that may have popped up to this point.
+    showErrorMessage (passwordInput, null);
+    return true;
+  }
+
+  function showErrorMessage (input, message) {
+    let container = input.parentElement;
+
+    // Clear existing error
+    let error = container.querySelector(".error-message");
+    if (error) {
+      container.removeChild(error);
+    }
+
+    // Add error if message isn't empty
+    if (message) {
+      let error = document.createElement("div");
+      error.classList.add("error-message");
+      error.innerText = message;
+      container.appendChild(error);
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Do not submit to the server
+    if (validateForm()) {
+      alert('Success!');
+    }
+  });
+
+  emailInput.addEventListener('input', validateEmail);
+  passwordInput.addEventListener('input', validatePassword);
+
+})();
