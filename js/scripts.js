@@ -27,14 +27,19 @@ let pokemonRepository = (function () {
   // to the log when a pokemon is clicked.
   function addListItem (pokemon) {
     let list = document.querySelector("ul");
-    let button = document.createElement('button');
+    let listItem = document.createElement("li");
+    let button = document.createElement("button");
     // Format the pokemon names from the JSON to capitalize first letter:
     // CSS: text-transform: capitalize; will capitalize first letter of each word
     // JS:  let nameFormat = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     button.innerText = pokemon.name;
-    button.classList.add("pokemon-buttons");
     button.id = pokemon.name;
-    list.appendChild(button);
+    button.classList.add("btn");
+    listItem.classList.add("pokemon-buttons");
+    listItem.classList.add("group-list-item");
+    listItem.id = pokemon.name;
+    list.appendChild(listItem);
+    listItem.appendChild(button);
     newButtonListener(button, pokemon);
   }
 
@@ -52,7 +57,7 @@ let pokemonRepository = (function () {
       item.number = details.id;
       // Setup info to be displayed in modal
       let typeString = item.types.map((item) => item.type.name).join("/");
-      let modalTitle = "${item.name} (${typeString})";
+      let modalTitle = item.name + " (" + typeString + ")";
 
       let modalDetails =
       "Height: " + item.height +
@@ -133,69 +138,24 @@ let pokemonRepository = (function () {
 
   // MODAL CONTENT
   function showModal (title, text) {
-    let modalContainer = document.querySelector("#modal-container");
+    let modalContainer = document.querySelector(".modal");
 
     // Clear last modal content
     modalContainer.innerHTML = "";
 
-    let modal = document.createElement("div");
-    modal.classList.add("modal");
-
-    // Add new content for modal
-    // Close button for the modal, on click runs closeModal function
-    let closeButtonElement = document.createElement("button");
-    closeButtonElement.classList.add("modal-close");
-    closeButtonElement.innerText = "Close";
-    closeButtonElement.addEventListener("click", hideModal);
-
-    // Adding a break in the DOM so that the floated close button
-    // will not interfere with the CSS centering of the title
-    let breakForCentering = document.createElement("br")
+    let modal = document.querySelector(".modal-content");
 
     // Title for the modal
-    let titleElement = document.createElement("h1");
+    let titleElement = document.querySelector(".modal-title");
     titleElement.innerText = title;
 
     // main content for modal
-    let contentElement = document.createElement("p");
+    let contentElement = document.querySelector(".modal-body");
     contentElement.innerHTML = text;
 
-    // actually attach created HTML to the DOM
-    // modal content to modal
-    // modal to its container
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(breakForCentering);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modalContainer.appendChild(modal);
-
-    // with new content now created and attached, show the modal
     modalContainer.classList.add("is-visible");
+
   }
-
-  // hideModal here
-  function hideModal() {
-    let modalContainer = document.querySelector("#modal-container");
-    modalContainer.classList.remove("is-visible");
-  }
-
-  // Listener for window to close modal on key "ESC" if it is not hidden already
-  window.addEventListener("keydown", (e) => {
-    let modalContainer = document.querySelector("#modal-container");
-    if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
-      hideModal();
-    }
-  });
-
-  let modalContainer = document.querySelector("#modal-container");
-  modalContainer.addEventListener('click', (e) => {
-    // Since this is also triggered when clicking INSIDE the modal
-    // We only want to close if the user clicks directly on the overlay
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
 
   return {
     add: add,
