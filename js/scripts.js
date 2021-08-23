@@ -130,13 +130,16 @@ let pokemonRepository = (function () {
 
   // Function to Search for Pokemon
   function search(searchString) {
-    return pokemonRepository.getAll().filter(
-      // Using the next pokemon in the list, return the name, make it toLowerCase
-      // then check if the searchString in lowercase is a part of the pokemon name we are on
-      // perform this for all pokemon in the list to find all that match.
-      (nextPokemonInList) => nextPokemonInList.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1
-    );
-  }
+      let filteredList =
+              pokemonRepository.getAll().filter(nextPokemonInList =>
+                nextPokemonInList.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1) || this.pokemonList;
+
+      document.querySelector("ul").innerHTML = "";
+
+      filteredList.forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+      });
+    }
 
   // MODAL CONTENT
   function showModal (title, text) {
