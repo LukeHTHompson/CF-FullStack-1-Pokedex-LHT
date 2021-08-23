@@ -83,6 +83,23 @@ h1 {
   text-align: center;
 }
 
+.search-div {
+  width: 50%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.search-title {
+  font-size: 20px;
+}
+
+.search-bar {
+  height: 100%;
+  width: 50%;
+  border: 2px solid black;
+  text-align: center;
+}
+
 ul {
   text-align: center;
   width: 50%;
@@ -114,6 +131,8 @@ ul {
 }
 
 @media all and (max-width: 560px) {
+  .search-div,
+  .search-bar,
   .pokemon-buttons,
   ul {
     width: 100%;
@@ -121,6 +140,8 @@ ul {
 }
 
 @media all and (max-width: 250px) {
+  .search-div,
+  .search-bar,
   .pokemon-buttons,
   ul {
     width: 100%;

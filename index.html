@@ -8,8 +8,6 @@
   </head>
 
   <body>
-    <!-- <button id="show-modal">Show Modal</button>
-    <button id="show-dialog">Show Dialog</button> -->
     <div id="modal-container"></div>
 
     <!-- Should make this form pop up in a modal when users click a register button -->
@@ -25,8 +23,11 @@
       <button>Register</button>
     </form> -->
     <!-- List populated by JS -->
-    <input type="text" onkeyup="pokemonRepository.search(this.value)">
     <h1>Pokemon List</h1>
+    <div class="search-div">
+      <span class="search-title">Search:</span>
+      <input type="text" class="search-bar" onkeyup="pokemonRepository.search(this.value)">
+    </div>
     <ul></ul>
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
