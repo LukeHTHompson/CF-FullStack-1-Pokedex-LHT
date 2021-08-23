@@ -35,6 +35,9 @@ let pokemonRepository = (function () {
     button.innerText = pokemon.name;
     button.id = pokemon.name;
     button.classList.add("btn");
+    button.classList.add("pokemon-buttons");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#modal-container");
     listItem.classList.add("pokemon-buttons");
     listItem.classList.add("group-list-item");
     listItem.id = pokemon.name;
@@ -138,19 +141,19 @@ let pokemonRepository = (function () {
 
   // MODAL CONTENT
   function showModal (title, text) {
-    let modalContainer = document.querySelector(".modal");
+    let modalContainer = document.querySelector("div.modal");
 
     // Clear last modal content
-    modalContainer.innerHTML = "";
+    // modalContainer.innerHTML = "";
 
-    let modal = document.querySelector(".modal-content");
+    let modal = document.querySelector("div.modal-content");
 
     // Title for the modal
-    let titleElement = document.querySelector(".modal-title");
+    let titleElement = document.querySelector("h5.modal-title");
     titleElement.innerText = title;
 
     // main content for modal
-    let contentElement = document.querySelector(".modal-body");
+    let contentElement = document.querySelector("div.modal-body");
     contentElement.innerHTML = text;
 
     modalContainer.classList.add("is-visible");

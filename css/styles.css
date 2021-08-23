@@ -20,7 +20,7 @@
   background: rgba(0, 0, 0, 0.5);
 
   /* to show it above other content */
-  z-index: 999;
+  z-index: 1041;
 
   /* to allow scrolling if the screen is not high enough*/
   overflow: auto;
@@ -39,28 +39,26 @@
 
   /* Creates a responsive modal which will max out at a width of 700px */
   width: 100%;
-  max-width: 700px;
   text-align: left;
 }
 
-.modal-close {
+button.close {
   display: block;
   float: right;
   -webkit-appearance: none;
   border: 0;
   background: none;
   color: #777;
-  text-decoration: underline;
 }
 
-.modal-close:hover,
-.modal-close:focus {
+button.close:hover,
+button.close:focus {
   color: #800080;
 }
 
 /* overwrite margins from .modal for the header to be flush with top of modal */
-.modal h1 {
-  margin-top: 0;
+.modal-title {
+  text-align: center;
   text-transform: capitalize;
 }
 
