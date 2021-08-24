@@ -103,10 +103,16 @@ ul {
   width: 50%;
   margin: 0 auto;
   border: 2px solid black;
+  list-style-type: none;
+}
+
+li.pokemon-buttons {
+  display: block;
+  width: 100%;
   padding: 2px;
 }
 
-li.pokemon-buttons{
+button.pokemon-buttons {
   border: 2px solid red;
   display: block;
   width: 100%;
@@ -116,12 +122,12 @@ li.pokemon-buttons{
 }
 
 /* Show which option is currently being hovered via yellow border */
-li.pokemon-buttons:hover {
+button.pokemon-buttons:hover {
   border: 2px solid yellow;
 }
 
 /* Show the most recently clicked (i.e. active) pokemon button via green border */
-li.pokemon-buttons:focus {
+button.pokemon-buttons:focus {
   /* border: 2px solid green; */
   background-color: green;
   border: 2px solid green;
@@ -133,7 +139,7 @@ li.pokemon-buttons:focus {
   .search-bar,
   .pokemon-buttons,
   ul {
-    width: 100%;
+    width: 98%;
   }
 }
 
@@ -142,10 +148,10 @@ li.pokemon-buttons:focus {
   .search-bar,
   .pokemon-buttons,
   ul {
-    width: 100%;
+    width: 98%;
   }
   input {
     display: block;
-    width: 100%;
+    width: 98%;
   }
 }
