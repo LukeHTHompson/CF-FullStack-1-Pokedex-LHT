@@ -132,11 +132,18 @@ let pokemonRepository = (function () {
               pokemonRepository.getAll().filter(nextPokemonInList =>
                 nextPokemonInList.name.toLowerCase().indexOf(searchString.toLowerCase()) > -1) || this.pokemonList;
 
-      document.querySelector("ul").innerHTML = "";
+      let list = document.querySelector("ul")
+      list.classList.remove("listNoBorder")
+      list.innerHTML = "";
 
       filteredList.forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
       });
+
+      if (list.innerHTML === "") {
+        list.innerHTML = "<h5>No Pokemon match your search</h5>";
+        list.classList.add("listNoBorder");
+      }
     }
 
   // MODAL CONTENT
@@ -173,5 +180,3 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
-console.log(pokemonRepository.getAll());

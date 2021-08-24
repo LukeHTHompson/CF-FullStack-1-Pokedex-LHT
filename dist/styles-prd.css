@@ -115,6 +115,10 @@ ul {
   list-style-type: none;
 }
 
+ul.listNoBorder {
+  border: none;
+}
+
 li.pokemon-buttons {
   display: block;
   width: 100%;
