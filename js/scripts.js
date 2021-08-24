@@ -143,11 +143,6 @@ let pokemonRepository = (function () {
   function showModal (title, text) {
     let modalContainer = document.querySelector("div.modal");
 
-    // Clear last modal content
-    // modalContainer.innerHTML = "";
-
-    let modal = document.querySelector("div.modal-content");
-
     // Title for the modal
     let titleElement = document.querySelector("h5.modal-title");
     titleElement.innerText = title;
