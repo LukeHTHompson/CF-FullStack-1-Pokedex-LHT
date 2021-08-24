@@ -1,0 +1,160 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+/* Styles */
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  display: block;
+  position: fixed;
+  padding: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* makes other content look grayish to imply focus on modal */
+  background: rgba(0, 0, 0, 0.5);
+
+  /* to show it above other content */
+  z-index: 1041;
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+
+  /* this is used to center the modal */
+  display: -ms-grid;
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  /* Center modal contents */
+  margin: auto;
+  display: inline-block;
+  background: #fff;
+  padding: 15px;
+
+  /* Creates a responsive modal which will max out at a width of 700px */
+  width: 100%;
+  text-align: left;
+}
+
+button.close {
+  display: block;
+  float: right;
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  color: #777;
+}
+
+button.close:hover,
+button.close:focus {
+  color: #800080;
+}
+
+/* overwrite margins from .modal for the header to be flush with top of modal */
+.modal-title {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* overwrite margins from .modal for the content to be flush with bottom of modal */
+.modal p {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/* form {
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+} */
+
+h1 {
+  text-align: center;
+}
+
+.search-div {
+  width: 50%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.search-title {
+  font-size: 20px;
+}
+
+.search-bar {
+  height: 100%;
+  width: 50%;
+  border: 2px solid black;
+  text-align: center;
+}
+
+ul {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  border: 2px solid black;
+  padding: 2px;
+}
+
+.pokemon-buttons{
+  border: 2px solid red;
+  display: block;
+  width: 100%;
+  margin: 2px auto;
+  font-size: 26px;
+  text-transform: capitalize;
+}
+
+/* Show which option is currently being hovered via yellow border */
+.pokemon-buttons:hover {
+  border: 2px solid yellow;
+}
+
+/* Show the most recently clicked (i.e. active) pokemon button via green border */
+.pokemon-buttons:focus {
+  /* border: 2px solid green; */
+  background-color: green;
+  border: 2px solid green;
+  color: white;
+}
+
+@media all and (max-width: 560px) {
+  .search-div,
+  .search-bar,
+  .pokemon-buttons,
+  ul {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 250px) {
+  .search-div,
+  .search-bar,
+  .pokemon-buttons,
+  ul {
+    width: 100%;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
+}
