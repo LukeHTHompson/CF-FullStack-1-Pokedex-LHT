@@ -6,4 +6,4 @@ Barring any JavaScript download issues, the project will run properly upon openi
 
 This project has the following dependencies: jQuery, BootStrap, Popper.
 
-The Pokemon information was pulled from API: "https://pokeapi.co/api/v2/pokemon/?limit=898"
+The Pokemon information was pulled from API: https://pokeapi.co/api/v2/pokemon/?limit=898
