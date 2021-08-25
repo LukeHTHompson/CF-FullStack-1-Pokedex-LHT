@@ -1,3 +1,10 @@
+// Add filtering by pokemon type in future.
+// API Data Structure can help with how to implement type filter.
+// data structure can also suggest other ways that we might be able to filter.
+  // The API call is currently only done once per pokemon on load, but if we do
+  // switch to have more filtering we will need to make the API call multiple times
+// UI updates would make this project shine.
+
 // Setup an IIFE to contain and protect pokemonList
 let pokemonRepository = (function () {
   // Create an empty array to populate in returns
